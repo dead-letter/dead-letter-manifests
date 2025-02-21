@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rabbitmq-dead-letter
+  namespace: rabbitmq-dead-letter
+spec:
+  serviceName: rabbitmq-dead-letter
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq-dead-letter
+  volumeClaimTemplates:
+    - metadata:
+        name: rabbitmq-storage-dead-letter
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 8Gi
+  template:
+    metadata:
+      labels:
+        app: rabbitmq-dead-letter
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq:3.8-management
+          ports:
+            - containerPort: 5672 # AMQP
+            - containerPort: 15672 # Management UI
+          volumeMounts:
+            - name: config
+              mountPath: /etc/rabbitmq
+            - name: rabbitmq-storage-dead-letter
+              mountPath: /var/lib/rabbitmq
+      volumes:
+        - name: config
+          configMap:
+            name: rabbitmq-config-dead-letter
