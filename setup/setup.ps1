@@ -15,7 +15,7 @@ if (-Not (Command-Exists "arkade")) {
     choco install arkade -y
 }
 
-$tools = @("tilt", "helm", "kubectl", "kustomize")
+$tools = @("tilt", "helm", "kubectl", "kustomize", "k9s")
 
 foreach ($tool in $tools) {
     if (-Not (Command-Exists $tool)) {
@@ -35,6 +35,16 @@ if (-Not (Command-Exists "docker")) {
 if (-Not (Command-Exists "k3d")) {
     Write-Output "Installing k3d..."
     choco install k3d -y
+}
+
+if (-Not (Command-Exists "age")) {
+    Write-Output "Installing age..."
+    choco install age -y
+}
+
+if (-Not (Command-Exists "sops")) {
+    Write-Output "Installing SOPS..."
+    choco install sops -y
 }
 
 Write-Output "Creating Local Cluster..."

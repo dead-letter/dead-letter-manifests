@@ -21,6 +21,15 @@ echo "Installing Kustomize"
 arkade get kustomize
 sudo mv /home/$USER/.arkade/bin/kustomize /usr/local/bin
 
+echo "Installing K9s"
+arkade get k9s
+sudo mv /home/$USER/.arkade/bin/k9s /usr/local/bin
+
+echo "Installing SOPS"
+curl -LO https://github.com/getsops/sops/releases/download/v3.9.4/sops-v3.9.4.linux.amd64
+sudo mv sops-v3.9.4.linux.amd64 /usr/local/bin/sops
+chmod +x /usr/local/bin/sops
+
 already_installed=" is already installed. Skipping..."
 not_installed=" is not installed. Installing..."
 
@@ -90,6 +99,20 @@ docker_installed=$(check_docker)
 
 if [[ "$docker_installed" == "Docker$not_installed" ]]; then
     install_docker
+fi
+
+echo "Installing misc toolchain..."
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install age
+elif command -v apt &>/dev/null; then
+    sudo apt-get install age
+elif command -v pacman &>/dev/null; then
+    yay -S age
+elif command -v dnf &>/dev/null; then
+    sudo dnf install age
+else
+    echo "Unsupported operating system. Please install toolchain manually before proceeding."
+    exit 1
 fi
 
 echo "Installing k3d"

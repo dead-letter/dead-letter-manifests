@@ -11,5 +11,9 @@ def generate_apply_list(directory):
             filtered_files.append(file)
 
     return filtered_files
+
+# cluster resources
+k8s_yaml(generate_apply_list('./manifests/cluster'))
+
 # rabbitmq
 k8s_yaml(generate_apply_list('./manifests/rabbitmq'))
