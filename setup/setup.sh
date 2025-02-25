@@ -104,12 +104,16 @@ fi
 echo "Installing misc toolchain..."
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	brew install age
+	brew install protobuf
 elif command -v apt &>/dev/null; then
 	sudo apt-get install age
+	sudo apt-get install protobuf-compiler
 elif command -v pacman &>/dev/null; then
 	yay -S age
+	yay -S protobuf
 elif command -v dnf &>/dev/null; then
 	sudo dnf install age
+	sudo dnf install protobuf
 else
 	echo "Unsupported operating system. Please install toolchain manually before proceeding."
 	exit 1
