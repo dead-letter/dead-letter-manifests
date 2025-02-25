@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dead-letter-data
+  labels:
+    app: dead-letter-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dead-letter-data
+  template:
+    metadata:
+      labels:
+        app: dead-letter-data
+    spec:
+      containers:
+        - name: dead-letter-data
+          image: DOCKER_USER/dead-letter-data:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DSN
+              value: "postgres://postgres:postgres@postgres.dead-letter.svc.cluster.local" 
+            

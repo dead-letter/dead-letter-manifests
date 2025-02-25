@@ -17,3 +17,10 @@ k8s_yaml(generate_apply_list('./manifests/cluster'))
 
 # rabbitmq
 k8s_yaml(generate_apply_list('./manifests/rabbitmq'))
+
+# postgres
+k8s_yaml(generate_apply_list('./manifests/postgres'))
+
+# data
+k8s_yaml(['./manifests/data/service.yaml'])
+k8s_yaml(kustomize('./manifests/data'))

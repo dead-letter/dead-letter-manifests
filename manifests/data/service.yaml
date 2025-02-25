@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dead-letter-data
+  labels:
+    run: dead-letter-data
+spec:
+  ports:
+    - port: 3000
+      protocol: TCP
+  selector:
+    app: dead-letter-data
