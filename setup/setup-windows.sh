@@ -48,5 +48,9 @@ if [[ "$(check_choco_installation sops)" == "sops$not_installed" ]]; then
 	choco install sops -y
 fi
 
+if [[ "$(check_choco_installation protoc)" == "protoc$not_installed" ]]; then
+	choco install protoc -y
+fi
+
 echo "Creating Local Cluster"
 k3d cluster create dead-letter --port "1337:80@loadbalancer"
