@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dead-letter-data
-          image: DOCKER_USER/dead-letter-data:latest
+          image: ghcr.io/dead-letter/dead-letter-data:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
