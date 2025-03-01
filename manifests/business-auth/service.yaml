@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dead-letter-business-auth
+  labels:
+    run: dead-letter-business-auth
+spec:
+  ports:
+    - port: 3000
+      protocol: TCP
+  selector:
+    app: dead-letter-business-auth

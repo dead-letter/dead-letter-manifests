@@ -119,10 +119,12 @@ else
 	exit 1
 fi
 
+# Clone Repositories
+git clone https://github.com/dead-letter/dead-letter-data
+git clone https://github.com/dead-letter/dead-letter-business-auth
+
 echo "Installing k3d"
 wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
 echo "Creating Local Cluster"
 k3d cluster create dead-letter --port "1337:80@loadbalancer"
-
-# Clone Repositories

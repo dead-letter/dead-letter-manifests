@@ -10,8 +10,6 @@ def generate_apply_list(directory):
         if file.find("kustomization") == -1:
             filtered_files.append(file)
 
-    print(filtered_files)
-
     return filtered_files
 
 # cluster resources
@@ -25,3 +23,6 @@ k8s_yaml(generate_apply_list('./manifests/postgres'))
 
 # data
 k8s_yaml(generate_apply_list('./manifests/data'))
+
+# business-auth
+k8s_yaml(generate_apply_list('./manifests/business-auth'))

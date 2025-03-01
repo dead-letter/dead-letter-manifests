@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dead-letter-business-auth
+  labels:
+    app: dead-letter-business-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dead-letter-business-auth
+  template:
+    metadata:
+      labels:
+        app: dead-letter-business-auth
+    spec:
+      containers:
+        - name: dead-letter-business-auth
+          image: ghcr.io/dead-letter/dead-letter-business-auth:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
