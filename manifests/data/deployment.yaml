@@ -23,4 +23,5 @@ spec:
           env:
             - name: DATABASE_URL
               value: "postgres://postgres:postgres@postgres.dead-letter.svc.cluster.local/postgres" 
-            
+            - name: APP_ENV
+              value: "development"
