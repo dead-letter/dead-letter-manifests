@@ -52,5 +52,9 @@ if [[ "$(check_choco_installation protoc)" == "protoc$not_installed" ]]; then
 	choco install protoc -y
 fi
 
+# Clone Repositories
+git clone https://github.com/dead-letter/dead-letter-data
+git clone https://github.com/dead-letter/dead-letter-business-auth
+
 echo "Creating Local Cluster"
 k3d cluster create dead-letter --port "1337:80@loadbalancer"

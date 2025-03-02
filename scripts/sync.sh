@@ -13,6 +13,7 @@ reset_dir() {
 
 cd_service "dead-letter-data"
 git pull
+make proto/gen
 reset_dir
 
 cd_service "dead-letter-business-auth"
