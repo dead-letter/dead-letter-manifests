@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dead-letter-rider
+  labels:
+    app: dead-letter-rider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dead-letter-rider
+  template:
+    metadata:
+      labels:
+        app: dead-letter-rider
+    spec:
+      containers:
+        - name: dead-letter-rider
+          image: ghcr.io/dead-letter/dead-letter-rider:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
