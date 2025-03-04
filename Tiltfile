@@ -41,4 +41,4 @@ k8s_yaml(generate_apply_list('./manifests/data'))
 k8s_yaml(generate_apply_list('./manifests/business-auth'))
 
 # rider
-k8s_yaml(generate_apply_list('./manifests/business-auth'))
+k8s_yaml(generate_apply_list('./manifests/rider'))

@@ -120,8 +120,10 @@ else
 fi
 
 # Clone Repositories
-git clone https://github.com/dead-letter/dead-letter-data
-git clone https://github.com/dead-letter/dead-letter-business-auth
+git clone https://github.com/dead-letter/dead-letter-data ../
+git clone https://github.com/dead-letter/dead-letter-business-auth ../
+git clone https://github.com/dead-letter/dead-letter-rider ../
+git clone https://github.com/dead-letter/dead-letter-order ../
 
 echo "Installing k3d"
 wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
