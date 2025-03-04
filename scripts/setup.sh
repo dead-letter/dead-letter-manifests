@@ -120,10 +120,17 @@ else
 fi
 
 # Clone Repositories
-git clone https://github.com/dead-letter/dead-letter-data ../
-git clone https://github.com/dead-letter/dead-letter-business-auth ../
-git clone https://github.com/dead-letter/dead-letter-rider ../
-git clone https://github.com/dead-letter/dead-letter-order ../
+if [[ $(basename "$(pwd)") == "dead-letter-manifests" ]]; then
+	git clone https://github.com/dead-letter/dead-letter-data ../dead-letter-data
+	git clone https://github.com/dead-letter/dead-letter-business-auth ../dead-letter-business-auth
+	git clone https://github.com/dead-letter/dead-letter-rider ../dead-letter-rider
+	git clone https://github.com/dead-letter/dead-letter-order ../dead-letter-order
+else
+	git clone https://github.com/dead-letter/dead-letter-data ../../dead-letter-data
+	git clone https://github.com/dead-letter/dead-letter-business-auth ../../dead-letter-business-auth
+	git clone https://github.com/dead-letter/dead-letter-rider ../../dead-letter-rider
+	git clone https://github.com/dead-letter/dead-letter-order ../../dead-letter-order
+fi
 
 echo "Installing k3d"
 wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
