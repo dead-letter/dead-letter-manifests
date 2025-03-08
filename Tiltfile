@@ -13,6 +13,17 @@ docker_build_with_restart(
 	]
 )
 
+docker_build_with_restart(
+	'ghcr.io/dead-letter/dead-letter-order',
+	context='../dead-letter-order',
+	entrypoint=["python", "main.py"],
+	dockerfile='../dead-letter-order/Dockerfile',
+	extra_tag='latest',
+	live_update=[
+		sync('../dead-letter-order', '/app')
+	]
+)
+
 def generate_apply_list(directory):
 	files = listdir(directory)
 	filtered_files = []
@@ -41,3 +52,6 @@ k8s_yaml(generate_apply_list('./manifests/business-auth'))
 
 # rider
 k8s_yaml(generate_apply_list('./manifests/rider'))
+
+# order
+k8s_yaml(generate_apply_list('./manifests/order'))

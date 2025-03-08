@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: dead-letter-rider
+  namespace: dead-letter
   labels:
     run: dead-letter-rider
 spec:
