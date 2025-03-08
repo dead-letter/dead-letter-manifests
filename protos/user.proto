@@ -10,7 +10,7 @@ import "google/protobuf/empty.proto";
 service UserService {
     rpc CreateUser (CreateUserRequest) returns (UserResponse);
     rpc ReadUser (ReadUserRequest) returns (UserResponse);
-    rpc ReadUserWithEmail (ReadUserWithEmailRequest) returns (UserResponse);
+    rpc CheckUserExists (CheckUserExistsRequest) returns (CheckUserExistsResponse);
     rpc ReadUserWithCredentials (ReadUserWithCredentialsRequest) returns (UserResponse);
     rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
     rpc DeleteUser (DeleteUserRequest) returns (google.protobuf.Empty);
@@ -25,27 +25,31 @@ message UserResponse {
 
 message CreateUserRequest {
     string email = 1;
-    string password = 2;
+    bytes passwordHash = 2;
 }
 
 message ReadUserRequest {
     string id = 1;
 }
 
-message ReadUserWithEmailRequest {
+message CheckUserExistsRequest {
     string email = 1;
+}
+
+message CheckUserExistsResponse {
+	bool exists = 1;
 }
 
 message ReadUserWithCredentialsRequest {
     string email = 1;
-    string password = 2;
+    bytes passwordHash = 2;
 }
 
 message UpdateUserRequest {
     string id = 1;
     int32 version = 2;
     string email = 3;
-    string passwordHash = 4;
+    bytes passwordHash = 4;
 }
 
 message DeleteUserRequest {
