@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package data;
+
+option go_package = "github.com/dead-letter/dead-letter-data/internal/pb";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service UserService {
+    rpc CreateUser (CreateUserRequest) returns (UserResponse);
+    rpc ReadUser (ReadUserRequest) returns (UserResponse);
+    rpc CheckUserExists (CheckUserExistsRequest) returns (CheckUserExistsResponse);
+    rpc ReadUserWithCredentials (ReadUserWithCredentialsRequest) returns (UserResponse);
+    rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
+    rpc DeleteUser (DeleteUserRequest) returns (google.protobuf.Empty);
+}
+
+message UserResponse {
+    string id = 1;
+	int32 version = 2;
+    google.protobuf.Timestamp createdAt = 3;
+    string email = 4;
+}
+
+message CreateUserRequest {
+    string email = 1;
+    bytes passwordHash = 2;
+}
+
+message ReadUserRequest {
+    string id = 1;
+}
+
+message CheckUserExistsRequest {
+    string email = 1;
+}
+
+message CheckUserExistsResponse {
+	bool exists = 1;
+}
+
+message ReadUserWithCredentialsRequest {
+    string email = 1;
+    bytes passwordHash = 2;
+}
+
+message UpdateUserRequest {
+    string id = 1;
+    int32 version = 2;
+    string email = 3;
+    bytes passwordHash = 4;
+}
+
+message DeleteUserRequest {
+    string id = 1;
+}
+
