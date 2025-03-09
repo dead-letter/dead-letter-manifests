@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: dead-letter
-  name: dead-letter-data
+  name: dead-letter-order
   labels:
-    run: dead-letter-data
+    run: dead-letter-order
 spec:
   ports:
     - port: 3000
       protocol: TCP
   selector:
-    app: dead-letter-data
+    app: dead-letter-order

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dead-letter-order
+  namespace: dead-letter
+  labels:
+    app: dead-letter-order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dead-letter-order
+  template:
+    metadata:
+      labels:
+        app: dead-letter-order
+    spec:
+      containers:
+        - name: dead-letter-order
+          image: ghcr.io/dead-letter/dead-letter-order:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_SERVICE_URL
+              value: "dead-letter-data.dead-letter.svc.cluster.local"
+            - name: MQ_URL
+              value: "rabbitmq-dead-letter.rabbitmq-dead-letter.svc.cluster.local"
+            - name: MQ_QUEUE
+              value: "order"
+            - name: MQ_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-admin
+                  key: user
+            - name: MQ_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-admin
+                  key: user

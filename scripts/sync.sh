@@ -18,3 +18,11 @@ reset_dir
 cd_service "dead-letter-business-auth"
 git pull
 reset_dir
+
+cd_service "dead-letter-rider"
+git pull
+reset_dir
+
+cd_service "dead-letter-order"
+git pull
+reset_dir

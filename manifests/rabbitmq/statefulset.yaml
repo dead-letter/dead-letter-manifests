@@ -33,6 +33,17 @@ spec:
               mountPath: /etc/rabbitmq
             - name: rabbitmq-storage-dead-letter
               mountPath: /var/lib/rabbitmq
+          env:
+          - name: RABBITMQ_DEFAULT_USER
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq-admin
+                key: user
+          - name: RABBITMQ_DEFAULT_PASS
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq-admin
+                key: pass
       volumes:
         - name: config
           configMap:
