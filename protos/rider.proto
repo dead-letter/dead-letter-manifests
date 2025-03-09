@@ -5,12 +5,12 @@ package data;
 option go_package = "github.com/dead-letter/dead-letter-data/internal/pb";
 
 service RiderService {
-    rpc CreateRider (CreateRiderRequest) returns (RiderResponse);
-    rpc ReadRider (ReadRiderRequest) returns (RiderResponse);
-    rpc UpdateRider (UpdateRiderRequest) returns (RiderResponse);
+    rpc CreateRider (CreateRiderRequest) returns (Rider);
+    rpc ReadRider (ReadRiderRequest) returns (Rider);
+    rpc UpdateRider (UpdateRiderRequest) returns (Rider);
 }
 
-message RiderResponse {
+message Rider {
     string id = 1;
 	int32 version = 2;
 }
