@@ -37,4 +37,4 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: rabbitmq-admin
-                  key: user
+                  key: pass
