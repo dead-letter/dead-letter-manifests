@@ -5,12 +5,12 @@ package data;
 option go_package = "github.com/dead-letter/dead-letter-data/internal/pb";
 
 service VendorService {
-    rpc CreateVendor (CreateVendorRequest) returns (VendorResponse);
-    rpc ReadVendor (ReadVendorRequest) returns (VendorResponse);
-    rpc UpdateVendor (UpdateVendorRequest) returns (VendorResponse);
+    rpc CreateVendor (CreateVendorRequest) returns (Vendor);
+    rpc ReadVendor (ReadVendorRequest) returns (Vendor);
+    rpc UpdateVendor (UpdateVendorRequest) returns (Vendor);
 }
 
-message VendorResponse {
+message Vendor {
     string id = 1;
 	int32 version = 2;
 }

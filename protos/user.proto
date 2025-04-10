@@ -8,15 +8,15 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
 service UserService {
-    rpc CreateUser (CreateUserRequest) returns (UserResponse);
-    rpc ReadUser (ReadUserRequest) returns (UserResponse);
+    rpc CreateUser (CreateUserRequest) returns (User);
+    rpc ReadUser (ReadUserRequest) returns (User);
     rpc CheckUserExists (CheckUserExistsRequest) returns (CheckUserExistsResponse);
-    rpc ReadUserWithCredentials (ReadUserWithCredentialsRequest) returns (UserResponse);
-    rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
+    rpc ReadUserWithCredentials (ReadUserWithCredentialsRequest) returns (User);
+    rpc UpdateUser (UpdateUserRequest) returns (User);
     rpc DeleteUser (DeleteUserRequest) returns (google.protobuf.Empty);
 }
 
-message UserResponse {
+message User {
     string id = 1;
 	int32 version = 2;
     google.protobuf.Timestamp createdAt = 3;
